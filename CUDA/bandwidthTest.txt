@@ -1,0 +1,56 @@
+[rm.barbosa@deeplearning01 5_bandwidthTest]$ ./bandwidthTest memory pinned
+[CUDA Bandwidth Test] - Starting...
+Running on...
+
+ Device 0: NVIDIA A100-SXM4-80GB
+ Quick Mode
+
+ Host to Device Bandwidth, 1 Device(s)
+ PINNED Memory Transfers
+   Transfer Size (Bytes)        Bandwidth(MB/s)
+   33554432                     25530.9
+
+ Device to Host Bandwidth, 1 Device(s)
+ PINNED Memory Transfers
+   Transfer Size (Bytes)        Bandwidth(MB/s)
+   33554432                     24573.0
+
+ Device to Device Bandwidth, 1 Device(s)
+ PINNED Memory Transfers
+   Transfer Size (Bytes)        Bandwidth(MB/s)
+   33554432                     1406844.6
+
+Result = PASS
+
+NOTE: The CUDA Samples are not meant for performance measurements. Results may vary when GPU Boost is enabled.
+
+
+_____________________________________________________________________________________________________________________
+
+
+
+[rm.barbosa@deeplearning01 5_bandwidthTest]$ ./bandwidthTest memory pageable
+[CUDA Bandwidth Test] - Starting...
+Running on...
+
+ Device 0: NVIDIA A100-SXM4-80GB
+ Quick Mode
+
+ Host to Device Bandwidth, 1 Device(s)
+ PAGEABLE Memory Transfers
+   Transfer Size (Bytes)        Bandwidth(MB/s)
+   33554432                     20114.3
+
+ Device to Host Bandwidth, 1 Device(s)
+ PAGEABLE Memory Transfers
+   Transfer Size (Bytes)        Bandwidth(MB/s)
+   33554432                     15822.2
+
+ Device to Device Bandwidth, 1 Device(s)
+ PAGEABLE Memory Transfers
+   Transfer Size (Bytes)        Bandwidth(MB/s)
+   33554432                     1433912.5
+
+Result = PASS
+
+NOTE: The CUDA Samples are not meant for performance measurements. Results may vary when GPU Boost is enabled.
