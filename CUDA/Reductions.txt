@@ -1,0 +1,177 @@
+ -------------------------------------
+| Reduction 0: Interleaved Addressing | - with even threads
+ -------------------------------------
+
+[rm.barbosa@deeplearning01 9_Reduction]$ ./reduction kernel=0
+./reduction Starting...
+
+MapSMtoCores for SM 8.0 is undefined.  Default to use 64 Cores/SM
+GPU Device 0: "NVIDIA A100-SXM4-80GB" with compute capability 8.0
+
+Using Device 0: NVIDIA A100-SXM4-80GB
+
+Reducing array of type int
+
+134217728 elements
+512 threads (max)
+262144 blocks
+
+Reduction, Throughput = 149.4142 GB/s, Time = 0.00359 s, Size = 134217728 Elements, NumDevsUsed = 1, Workgroup = 512
+
+GPU result = -66248749
+CPU result = -66248749
+
+Test passed
+
+
+ -------------------------------------
+| Reduction 1: Interleaved Addressing | - with first half of threads
+ -------------------------------------
+
+ [rm.barbosa@deeplearning01 9_Reduction]$ ./reduction kernel=1
+./reduction Starting...
+
+MapSMtoCores for SM 8.0 is undefined.  Default to use 64 Cores/SM
+GPU Device 0: "NVIDIA A100-SXM4-80GB" with compute capability 8.0
+
+Using Device 0: NVIDIA A100-SXM4-80GB
+
+Reducing array of type int
+
+134217728 elements
+512 threads (max)
+262144 blocks
+
+Reduction, Throughput = 158.9391 GB/s, Time = 0.00338 s, Size = 134217728 Elements, NumDevsUsed = 1, Workgroup = 512
+
+GPU result = -66248749
+CPU result = -66248749
+
+Test passed
+
+ ------------------------------------
+| Reduction 2: Sequential Addressing | - each threads adds its own + another far away (idx + (warp size + idx)
+ ------------------------------------
+
+[rm.barbosa@deeplearning01 9_Reduction]$ ./reduction kernel=2
+./reduction Starting...
+
+MapSMtoCores for SM 8.0 is undefined.  Default to use 64 Cores/SM
+GPU Device 0: "NVIDIA A100-SXM4-80GB" with compute capability 8.0
+
+Using Device 0: NVIDIA A100-SXM4-80GB
+
+Reducing array of type int
+
+134217728 elements
+512 threads (max)
+262144 blocks
+
+Reduction, Throughput = 160.8612 GB/s, Time = 0.00334 s, Size = 134217728 Elements, NumDevsUsed = 1, Workgroup = 512
+
+GPU result = -66248749
+CPU result = -66248749
+
+Test passed
+
+
+ ------------------------------------
+| Reduction 3: First Add during load | 
+ ------------------------------------
+
+[rm.barbosa@deeplearning01 9_Reduction]$ ./reduction kernel=3
+./reduction Starting...
+
+MapSMtoCores for SM 8.0 is undefined.  Default to use 64 Cores/SM
+GPU Device 0: "NVIDIA A100-SXM4-80GB" with compute capability 8.0
+
+Using Device 0: NVIDIA A100-SXM4-80GB
+
+Reducing array of type int
+
+134217728 elements
+512 threads (max)
+131072 blocks
+
+Reduction, Throughput = 168.0657 GB/s, Time = 0.00319 s, Size = 134217728 Elements, NumDevsUsed = 1, Workgroup = 512
+
+GPU result = -66248749
+CPU result = -66248749
+
+Test passed
+
+ --------------------------
+| Reduction 4: Warp reduce | - add the value far away and shift left
+ --------------------------
+
+[rm.barbosa@deeplearning01 9_Reduction]$ ./reduction kernel=4
+./reduction Starting...
+
+MapSMtoCores for SM 8.0 is undefined.  Default to use 64 Cores/SM
+GPU Device 0: "NVIDIA A100-SXM4-80GB" with compute capability 8.0
+
+Using Device 0: NVIDIA A100-SXM4-80GB
+
+Reducing array of type int
+
+134217728 elements
+512 threads (max)
+131072 blocks
+
+Reduction, Throughput = 176.4137 GB/s, Time = 0.00304 s, Size = 134217728 Elements, NumDevsUsed = 1, Workgroup = 512
+
+GPU result = -66248749
+CPU result = -66248749
+
+Test passed
+
+
+ --------------------
+| Reduction 5: Unroll| 
+ --------------------
+
+ [rm.barbosa@deeplearning01 9_Reduction]$ ./reduction kernel=5
+./reduction Starting...
+
+MapSMtoCores for SM 8.0 is undefined.  Default to use 64 Cores/SM
+GPU Device 0: "NVIDIA A100-SXM4-80GB" with compute capability 8.0
+
+Using Device 0: NVIDIA A100-SXM4-80GB
+
+Reducing array of type int
+
+134217728 elements
+512 threads (max)
+131072 blocks
+
+Reduction, Throughput = 174.3235 GB/s, Time = 0.00308 s, Size = 134217728 Elements, NumDevsUsed = 1, Workgroup = 512
+
+GPU result = -66248749
+CPU result = -66248749
+
+Test passed
+
+ ---------------------------
+| Reduction 6: Multple Adds | - each thread does multiple adds to reduce number of threads and this way reduce register pressure
+ ---------------------------
+
+[rm.barbosa@deeplearning01 9_Reduction]$ ./reduction kernel=6
+./reduction Starting...
+
+MapSMtoCores for SM 8.0 is undefined.  Default to use 64 Cores/SM
+GPU Device 0: "NVIDIA A100-SXM4-80GB" with compute capability 8.0
+
+Using Device 0: NVIDIA A100-SXM4-80GB
+
+Reducing array of type int
+
+134217728 elements
+512 threads (max)
+256 blocks
+
+Reduction, Throughput = 318.4760 GB/s, Time = 0.00169 s, Size = 134217728 Elements, NumDevsUsed = 1, Workgroup = 512
+
+GPU result = -66248749
+CPU result = -66248749
+
+Test passed 
